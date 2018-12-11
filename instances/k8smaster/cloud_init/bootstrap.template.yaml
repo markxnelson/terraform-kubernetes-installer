@@ -16,6 +16,12 @@ write_files:
     encoding: "gzip+base64"
     content: |
       ${setup_template_sh_content}
+# cni
+  - path: "/etc/cni/net.d/10-flannel.conf"
+    permissions: "0755"
+    encoding: "gzip+base64"
+    content: |
+      ${flannel_conf_content}
 # Kube manifests
   - path: "/etc/kubernetes/manifests/kube-apiserver.yaml"
     permissions: "0755"

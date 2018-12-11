@@ -58,6 +58,10 @@ data "template_file" "kubelet-service" {
   }
 }
 
+data "template_file" "flannel-conf" {
+  template = "${file("${path.module}/scripts/10-flannel.conf")}"
+}
+
 data "template_file" "kube-controller-manager" {
   template = "${file("${path.module}/manifests/kube-controller-manager.yaml")}"
 
@@ -124,6 +128,7 @@ data "template_file" "kube_master_cloud_init_file" {
     k8s_ver                                  = "${var.k8s_ver}"
     setup_preflight_sh_content               = "${base64gzip(data.template_file.setup-preflight.rendered)}"
     setup_template_sh_content                = "${base64gzip(data.template_file.setup-template.rendered)}"
+    flannel_conf_content                     = "${base64gzip(data.template_file.flannel-conf.rendered)}"
     kube_apiserver_template_content          = "${base64gzip(data.template_file.kube-apiserver.rendered)}"
     kube_controller_manager_template_content = "${base64gzip(data.template_file.kube-controller-manager.rendered)}"
     kube_dns_template_content                = "${base64gzip(data.template_file.kube-dns.rendered)}"

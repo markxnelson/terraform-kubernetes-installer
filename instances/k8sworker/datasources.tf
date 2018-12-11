@@ -44,6 +44,10 @@ data "template_file" "kube-proxy" {
   }
 }
 
+data "template_file" "flannel-conf" {
+  template = "${file("${path.module}/scripts/10-flannel.conf")}"
+}
+
 data "template_file" "worker-kubeconfig" {
   template = "${file("${path.module}/manifests/worker-kubeconfig.template.yaml")}"
 
@@ -73,6 +77,7 @@ data "template_file" "kube_worker_cloud_init_file" {
     k8s_ver                            = "${var.k8s_ver}"
     setup_preflight_sh_content         = "${base64gzip(data.template_file.setup-preflight.rendered)}"
     setup_template_sh_content          = "${base64gzip(data.template_file.setup-template.rendered)}"
+    flannel_conf_content               = "${base64gzip(data.template_file.flannel-conf.rendered)}"
     kube_proxy_template_content        = "${base64gzip(data.template_file.kube-proxy.rendered)}"
     worker_kubeconfig_template_content = "${base64gzip(data.template_file.worker-kubeconfig.rendered)}"
     kubelet_service_content            = "${base64gzip(data.template_file.kubelet-service.rendered)}"
