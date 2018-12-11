@@ -8,15 +8,14 @@ ExecStart=/usr/bin/kubelet \
   --cluster_dns=10.21.21.21 \
   --cluster_domain=cluster.local \
   --container-runtime=docker \
+  --fail-swap-on=false \
   --hostname-override=__FQDN_HOSTNAME__ \
   --kubeconfig=/etc/kubernetes/manifests/master-kubeconfig.yaml \
-  --require-kubeconfig=true \
-  --network-plugin=cni \
   --node-labels node-role.kubernetes.io/master= \
   --pod-manifest-path=/etc/kubernetes/manifests \
   --register-node=true \
   --cloud-provider=external \
-  --feature-gates=ExperimentalCriticalPodAnnotation=true,Accelerators=true \
+  --feature-gates=ExperimentalCriticalPodAnnotation=true \
   --provider-id=__NODE_ID_PREFIX__.__NODE_ID_SUFFIX__ \
   --register-with-taints=node-role.kubernetes.io/master=:NoSchedule \
   __SWAP_OPTION__ --v=2

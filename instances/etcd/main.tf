@@ -8,7 +8,8 @@ resource "oci_core_instance" "TFInstanceEtcd" {
   compartment_id      = "${var.compartment_ocid}"
   display_name        = "${var.label_prefix}${var.display_name_prefix}-${count.index}"
   hostname_label      = "${var.hostname_label_prefix}-${count.index}"
-  image               = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
+  #image               = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
+  image               = "ocid1.image.oc1.phx.aaaaaaaaupbfz5f5hdvejulmalhyb6goieolullgkpumorbvxlwkaowglslq"
   shape               = "${var.shape}"
 
   create_vnic_details {

@@ -174,7 +174,7 @@ variable "kubernetes_network_plugin" {
 variable "flannel_network_cidr" {
   description = "A CIDR notation IP range to use for the entire flannel network"
   type        = "string"
-  default     = "10.99.0.0/16"
+  default     = "10.244.0.0/16"
 }
 
 variable "etcd_cluster_ingress" {
@@ -333,11 +333,11 @@ variable "etcd_ver" {
 }
 
 variable "flannel_ver" {
-  default = "v0.9.1"
+  default = "v0.10.0"
 }
 
 variable "k8s_ver" {
-  default = "1.9.6"
+  default = "1.12.3"
 }
 
 variable "k8s_dashboard_ver" {
