@@ -109,7 +109,7 @@ resource "oci_core_security_list" "K8SMasterSubnet" {
     },
     {
       protocol = "all"
-      source   = "${lookup(var.bmc_ingress_cidrs, "VCN-CIDR")}"
+      source   = "0.0.0.0/0"
     },
     {
       tcp_options {
